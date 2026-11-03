@@ -1,0 +1,11 @@
+{
+  "f0_ghz": 40.0,
+  "return_loss_db_at_f0": 37.36772935338332,
+  "insertion_loss_db_at_f0": 0.007620867451627539,
+  "coupling_db_at_f0": 29.89998129091653,
+  "isolation_db_at_f0": 65.45411778859403,
+  "directivity_db_at_f0": 35.554136497677504,
+  "coupling_flatness_db": 2.4431068724739973,
+  "min_directivity_db": 33.74433553623871,
+  "min_return_loss_db": 33.692379486108486
+}

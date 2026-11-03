@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Moreno coupler port map</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#A8461A}a:hover{color:#7A3112}
+</style>
+</helmet>
+<div style="position: relative; width: 1040px; height: 760px; background: #F5F4EF; color: #17202B; font-family: 'IBM Plex Sans', 'Helvetica Neue', sans-serif; overflow: hidden">
+<svg width="912" height="584" viewBox="0 0 912 584" style="position: absolute; left: 64px; top: 112px">
+<defs>
+<marker id="pm-head" orient="auto" markerWidth="5" markerHeight="5" refX="2" refY="2" overflow="visible"><path d="M0 0 L4 2 L0 4 Z" fill="#2A5788"></path></marker>
+<marker id="pm-head-c" orient="auto" markerWidth="5" markerHeight="5" refX="2" refY="2" overflow="visible"><path d="M0 0 L4 2 L0 4 Z" fill="#A8461A"></path></marker>
+</defs>
+<rect x="376" y="0" width="160" height="584" fill="#E3E8EE" stroke="#17202B" stroke-width="2"></rect>
+<rect x="0" y="212" width="912" height="160" fill="#FFFFFF" fill-opacity="0.82" stroke="#17202B" stroke-width="2"></rect>
+<rect x="376" y="212" width="160" height="160" fill="none" stroke="#A8461A" stroke-width="2" stroke-dasharray="6 4"></rect>
+<line x1="376" y1="212" x2="536" y2="372" stroke="#4A5361" stroke-width="1" stroke-dasharray="4 4"></line>
+<rect x="393" y="253" width="56" height="8" fill="#17202B"></rect>
+<rect x="417" y="229" width="8" height="56" fill="#17202B"></rect>
+<rect x="463" y="323" width="56" height="8" fill="#17202B"></rect>
+<rect x="487" y="299" width="8" height="56" fill="#17202B"></rect>
+<line x1="456" y1="28" x2="456" y2="146" stroke="#2A5788" stroke-width="3" marker-end="url(#pm-head)"></line>
+<line x1="456" y1="430" x2="456" y2="548" stroke="#2A5788" stroke-width="3" marker-end="url(#pm-head)"></line>
+<line x1="340" y1="292" x2="52" y2="292" stroke="#A8461A" stroke-width="3" marker-end="url(#pm-head-c)"></line>
+<line x1="572" y1="292" x2="700" y2="292" stroke="#8A8F98" stroke-width="2" stroke-dasharray="5 5"></line>
+</svg>
+<div style="position: absolute; left: 64px; top: 40px; font-size: 32px; line-height: 40px; font-weight: 600">Port map — top view</div>
+<div style="position: absolute; left: 64px; top: 80px; font-size: 15px; line-height: 22px; color: #4A5361">Guide 2 crosses over guide 1; crossed slots on the dashed diagonal of the shared square</div>
+<div style="position: absolute; left: 616px; top: 140px; font-size: 16px; line-height: 24px"><b>Port 1</b> · input</div>
+<div style="position: absolute; left: 616px; top: 600px; font-size: 16px; line-height: 24px"><b>Port 2</b> · through</div>
+<div style="position: absolute; left: 104px; top: 284px; font-size: 16px; line-height: 24px; color: #A8461A"><b>Port 3</b> · coupled</div>
+<div style="position: absolute; left: 776px; top: 284px; width: 160px; text-align: right; font-size: 16px; line-height: 24px; color: #4A5361"><b>Port 4</b> · isolated</div>
+<div style="position: absolute; left: 640px; top: 372px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; line-height: 16px; color: #4A5361">≈ 0 (directivity-limited)</div>
+<div style="position: absolute; left: 616px; top: 220px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; line-height: 16px; color: #4A5361">guide 1 · lower</div>
+<div style="position: absolute; left: 104px; top: 500px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; line-height: 16px; color: #4A5361">guide 2 · upper</div>
+<div style="position: absolute; left: 64px; top: 712px; font-size: 14px; line-height: 20px; color: #4A5361">Slot positions drawn for WR-22 at 40 GHz (d ≈ 1.60 mm, L = 2.0 mm). Mirror the slots onto the other diagonal to swap ports 3 and 4.</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1040,"height":760}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+{
+  "inputs": {
+    "waveguide": "WR-22",
+    "f0_ghz": 40.0,
+    "slot_length_mm": 2.0,
+    "slot_width_mm": 0.35,
+    "wall_mm": 0.25,
+    "spacing_mm": null,
+    "feed_lengths_lg": 1.0,
+    "sweep_fraction": 0.125
+  },
+  "a_mm": 5.69,
+  "b_mm": 2.845,
+  "band_ghz": [
+    33.0,
+    50.0
+  ],
+  "f0_ghz": 40.0,
+  "fc_te10_ghz": 26.343801230228472,
+  "fc_te20_ghz": 52.687602460456944,
+  "lambda0_mm": 7.49481145,
+  "lambda_g_mm": 9.959914553504403,
+  "beta_rad_per_mm": 0.630847310328465,
+  "spacing_mm": 2.4899786383761007,
+  "spacing_diagonal_mm": 3.521361560410774,
+  "d_mm": 1.6000106808119499,
+  "slot_centres_mm": [
+    [
+      1.6000106808119499,
+      1.6000106808119499
+    ],
+    [
+      4.08998931918805,
+      4.08998931918805
+    ]
+  ],
+  "slot_length_mm": 2.0,
+  "slot_width_mm": 0.35,
+  "wall_mm": 0.25,
+  "slot_resonant_length_mm": 3.747405725,
+  "pair_vs_single_slot_db": 5.852654023729472,
+  "copper_loss_db_per_m": 0.805684272144527,
+  "wall_loss_db": 2.8845747660988987,
+  "clearance_mm": 0.6000106808119499,
+  "slot_gap_mm": 1.8596606246223868,
+  "electrical_spacing_deg": 90.0,
+  "feed_mm": 9.96,
+  "sweep_ghz": [
+    35.0,
+    45.0
+  ],
+  "checks": [
+    {
+      "name": "single_mode",
+      "ok": true,
+      "detail": "f0 within 1.25 fc .. 0.95 * 2 fc (32.93 .. 50.05 GHz)"
+    },
+    {
+      "name": "wall_clearance",
+      "ok": true,
+      "detail": "slot arms clear side walls by 0.600 mm (want >= 0.114)"
+    },
+    {
+      "name": "below_resonance",
+      "ok": true,
+      "detail": "L = 53% of resonant length lambda0/2 = 3.747 mm"
+    },
+    {
+      "name": "electrical_spacing",
+      "ok": true,
+      "detail": "beta * Delta = 90.0 deg (aim for 90)"
+    },
+    {
+      "name": "slots_separate",
+      "ok": true,
+      "detail": "narrowest metal web between the two crosses 1.860 mm (want >= 0.114)"
+    },
+    {
+      "name": "narrow_slot",
+      "ok": true,
+      "detail": "arm aspect ratio L/w = 5.7 (want >= 4 for a narrow-slot cross)"
+    }
+  ],
+  "all_checks_ok": true
+}

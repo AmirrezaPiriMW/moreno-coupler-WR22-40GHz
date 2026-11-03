@@ -1,0 +1,96 @@
+{
+  "coupling_extrapolated_db": 30.04315118475403,
+  "coupling_uncertainty_db": 0.16779353454342794,
+  "finest": {
+    "run": "c0125",
+    "slot_cell_mm": 0.0125,
+    "cells": 12806532.0,
+    "runtime_s": 1343.3,
+    "end_criteria": 1e-05,
+    "cells_per_lambda": 20.0,
+    "feed_lambda_g": 1.5,
+    "edge_rule": "thirds",
+    "L_mm": 2.0,
+    "w_mm": 0.35,
+    "t_mm": 0.25,
+    "power_balance_min": 0.9957519631397478,
+    "power_balance_max": 1.0026513414925444,
+    "coupling_db_at_f0": 29.89998129091653,
+    "directivity_db_at_f0": 35.554136497677504,
+    "isolation_db_at_f0": 65.45411778859403,
+    "return_loss_db_at_f0": 37.36772935338332,
+    "insertion_loss_db_at_f0": 0.007620867451627539,
+    "coupling_flatness_db": 2.4431068724739973,
+    "min_directivity_db": 33.74433553623871,
+    "min_return_loss_db": 33.692379486108486
+  },
+  "coupling_slot_mesh_uncertainty_db": 0.14316989383750034,
+  "directivity_converged_db": 35.349598043149406,
+  "directivity_uncertainty_db": 0.20453845452809816,
+  "finest_slot_cell_mm": 0.0125,
+  "reference_summary": {
+    "f0_ghz": 40.0,
+    "return_loss_db_at_f0": 37.36772935338332,
+    "insertion_loss_db_at_f0": 0.007620867451627539,
+    "coupling_db_at_f0": 29.89998129091653,
+    "isolation_db_at_f0": 65.45411778859403,
+    "directivity_db_at_f0": 35.554136497677504,
+    "coupling_flatness_db": 2.4431068724739973,
+    "min_directivity_db": 33.74433553623871,
+    "min_return_loss_db": 33.692379486108486
+  },
+  "directivity_above_30_ghz": [
+    35.0,
+    45.0
+  ],
+  "chart": [
+    {
+      "L_mm": 1.6,
+      "C_corrected": 36.70253130772749
+    },
+    {
+      "L_mm": 1.8,
+      "C_corrected": 33.25404562104782
+    },
+    {
+      "L_mm": 2.0,
+      "C_corrected": 30.04315118475403
+    },
+    {
+      "L_mm": 2.2,
+      "C_corrected": 26.983512572219386
+    },
+    {
+      "L_mm": 2.4,
+      "C_corrected": 23.986325400221745
+    },
+    {
+      "L_mm": 2.6,
+      "C_corrected": 21.081292316434904
+    }
+  ],
+  "targets": [
+    [
+      20.0,
+      null
+    ],
+    [
+      25.0,
+      2.331737705146256
+    ],
+    [
+      30.0,
+      2.0027546514963444
+    ]
+  ],
+  "chart_mesh_shift_db": 0.4674746088183497,
+  "dC_dL_db_per_0.01mm": -0.15667211258686625,
+  "dC_dw_db_per_0.01mm": -0.1494508194404098,
+  "dC_dt_db_per_0.01mm": 0.17724885177550434,
+  "copper_loss_db_per_m": 0.805684272144527,
+  "reciprocity": 0.0018259937510516028,
+  "power_balance_full": [
+    0.9961687904605863,
+    1.002140000474126
+  ]
+}

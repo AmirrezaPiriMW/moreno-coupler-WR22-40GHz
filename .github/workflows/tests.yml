@@ -1,0 +1,29 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: pip install -r requirements.txt pytest
+      - run: pytest -q
+      - name: Every number of the report follows from the raw results
+        run: python tools/verify_results.py
+      - name: Design file is up to date
+        run: |
+          python -m moreno.design --out /tmp/design.json
+          python - <<'PY'
+          import json
+          a = json.load(open("design/design.json")); b = json.load(open("/tmp/design.json"))
+          assert a == b, "design/design.json is stale: run python -m moreno.design"
+          PY

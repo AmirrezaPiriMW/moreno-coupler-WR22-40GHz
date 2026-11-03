@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "moreno-coupler"
+version = "2.0.0"
+description = "Design, HFSS model and analysis of a Moreno cross-guide waveguide directional coupler"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = ["numpy>=1.24", "matplotlib>=3.7"]
+
+[project.optional-dependencies]
+hfss = ["pyaedt>=0.12"]
+dev = ["pytest"]
+report = ["reportlab>=4.0", "pillow>=9.0", "scipy>=1.10"]
+
+[project.scripts]
+moreno-design = "moreno.design:main"
+
+[tool.setuptools]
+packages = ["moreno"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

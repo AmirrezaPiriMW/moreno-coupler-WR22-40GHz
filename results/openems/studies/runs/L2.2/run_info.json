@@ -1,0 +1,47 @@
+{
+  "design": {
+    "a_mm": 5.69,
+    "b_mm": 2.845,
+    "wall_mm": 0.25,
+    "slot_length_mm": 2.2,
+    "slot_width_mm": 0.35,
+    "spacing_mm": 2.4899786383761007,
+    "d_mm": 1.6000106808119499,
+    "f0_ghz": 40.0
+  },
+  "runs": [
+    {
+      "excited_port": 1,
+      "mesh_lines_xyz": [
+        243,
+        39,
+        243
+      ],
+      "cells": 2302911,
+      "coarse_mm": 0.3331027311111111,
+      "fine_mm": 0.035,
+      "runtime_s": 203.4,
+      "end_criteria": 1e-05,
+      "res_cells_per_lambda": 20,
+      "feed_lambda_g": 1.5,
+      "y_lines_in_wall": 7,
+      "thirds_rule": true
+    }
+  ],
+  "reference_planes": "edges of the shared a x a square",
+  "power_balance_port1": {
+    "min": 0.9964806957560092,
+    "max": 1.0023513581511707
+  },
+  "summary": {
+    "f0_ghz": 40.0,
+    "return_loss_db_at_f0": 38.116351304654344,
+    "insertion_loss_db_at_f0": 0.012581933624014986,
+    "coupling_db_at_f0": 26.52587597878715,
+    "isolation_db_at_f0": 56.70941570156025,
+    "directivity_db_at_f0": 30.183539722773105,
+    "coupling_flatness_db": 3.2187200936976694,
+    "min_directivity_db": 29.402516682003878,
+    "min_return_loss_db": 33.771568967289156
+  }
+}

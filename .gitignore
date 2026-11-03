@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+.pytest_cache/
+
+# AEDT / HFSS (large or machine-specific)
+*.aedtresults/
+*.aedt.lock
+*.aedt.auto
+*.aedtz
+*.lock
+*.log
+*.asol
+*.semaphore
+*.pyaedt/
+results/*.aedt
+results/*.aedtresults/
+
+# keep results summaries, plots and touchstone files
+!results/*.s4p
+!results/*.png
+!results/*.json
+!results/*.csv
+
+# openEMS scratch field data (large)
+results/openems/sim/
+results/openems/**/sim/
+
+# openEMS campaign folder (tools/run_campaign.sh)
+campaign/

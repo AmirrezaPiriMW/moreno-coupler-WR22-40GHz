@@ -1,0 +1,2 @@
+-r requirements.txt
+pyaedt>=0.12  # tested against the PyAEDT 1.9 API

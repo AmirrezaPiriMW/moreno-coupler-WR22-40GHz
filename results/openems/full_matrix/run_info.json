@@ -1,0 +1,103 @@
+{
+  "design": {
+    "a_mm": 5.69,
+    "b_mm": 2.845,
+    "wall_mm": 0.25,
+    "slot_length_mm": 2.0,
+    "slot_width_mm": 0.35,
+    "spacing_mm": 2.4899786383761007,
+    "d_mm": 1.6000106808119499,
+    "f0_ghz": 40.0
+  },
+  "runs": [
+    {
+      "excited_port": 1,
+      "mesh_lines_xyz": [
+        239,
+        39,
+        239
+      ],
+      "cells": 2227719,
+      "coarse_mm": 0.3331027311111111,
+      "fine_mm": 0.035,
+      "runtime_s": 199.1,
+      "end_criteria": 1e-05,
+      "res_cells_per_lambda": 20,
+      "feed_lambda_g": 1.5,
+      "y_lines_in_wall": 7,
+      "thirds_rule": true
+    },
+    {
+      "excited_port": 2,
+      "mesh_lines_xyz": [
+        239,
+        39,
+        239
+      ],
+      "cells": 2227719,
+      "coarse_mm": 0.3331027311111111,
+      "fine_mm": 0.035,
+      "runtime_s": 202.7,
+      "end_criteria": 1e-05,
+      "res_cells_per_lambda": 20,
+      "feed_lambda_g": 1.5,
+      "y_lines_in_wall": 7,
+      "thirds_rule": true
+    },
+    {
+      "excited_port": 3,
+      "mesh_lines_xyz": [
+        239,
+        39,
+        239
+      ],
+      "cells": 2227719,
+      "coarse_mm": 0.3331027311111111,
+      "fine_mm": 0.035,
+      "runtime_s": 206.3,
+      "end_criteria": 1e-05,
+      "res_cells_per_lambda": 20,
+      "feed_lambda_g": 1.5,
+      "y_lines_in_wall": 7,
+      "thirds_rule": true
+    },
+    {
+      "excited_port": 4,
+      "mesh_lines_xyz": [
+        239,
+        39,
+        239
+      ],
+      "cells": 2227719,
+      "coarse_mm": 0.3331027311111111,
+      "fine_mm": 0.035,
+      "runtime_s": 186.6,
+      "end_criteria": 1e-05,
+      "res_cells_per_lambda": 20,
+      "feed_lambda_g": 1.5,
+      "y_lines_in_wall": 7,
+      "thirds_rule": true
+    }
+  ],
+  "reference_planes": "edges of the shared a x a square",
+  "power_balance_port1": {
+    "min": 0.9972027209723634,
+    "max": 1.0020041533705626
+  },
+  "summary": {
+    "f0_ghz": 40.0,
+    "return_loss_db_at_f0": 37.85544096437049,
+    "insertion_loss_db_at_f0": 0.006946276973636142,
+    "coupling_db_at_f0": 29.57567657593568,
+    "isolation_db_at_f0": 66.25395395958441,
+    "directivity_db_at_f0": 36.67827738364873,
+    "coupling_flatness_db": 2.5129915241766234,
+    "min_directivity_db": 34.761834677318404,
+    "min_return_loss_db": 34.38933855814325
+  },
+  "reciprocity_max_abs_Sij_minus_Sji": 0.0018259903035340993,
+  "power_balance_all_ports": {
+    "min": 0.99616875985769,
+    "max": 1.002140359254943
+  }
+}

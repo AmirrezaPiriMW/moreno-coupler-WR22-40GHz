@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Moreno coupler design calculator</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#A8461A}a:hover{color:#7A3112}
+input:focus-visible,button:focus-visible{outline:2px solid #2A5788;outline-offset:2px}
+</style>
+</helmet>
+<div style="width: 1440px; height: 1080px; box-sizing: border-box; padding: 48px; background: #F5F4EF; color: #17202B; font-family: 'IBM Plex Sans', 'Helvetica Neue', sans-serif; display: flex; flex-direction: column; gap: 28px">
+
+<div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; border-bottom: 2px solid #17202B; padding-bottom: 20px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #A8461A">Directional coupler · design sheet</div>
+<h1 style="margin: 0; font-size: 40px; line-height: 48px; font-weight: 600; letter-spacing: -0.01em">Moreno cross-guide coupler</h1>
+<div style="font-size: 16px; line-height: 24px; color: #4A5361">Two crossed slots in the shared broad wall, on the diagonal through the input-side corner, spaced λg/4</div>
+</div>
+<div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; line-height: 20px; color: #4A5361; text-align: right">
+<div>{{wgName}} · a = {{aStr}} mm · b = {{bStr}} mm</div>
+<div>band {{bandStr}} GHz · f₀ = {{fStr}} GHz</div>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: 340px 560px minmax(0, 1fr); gap: 32px; flex-grow: 1; min-height: 0">
+
+<div style="display: flex; flex-direction: column; gap: 24px">
+<div style="background: #FFFFFF; border: 1px solid #CFCBBE; border-radius: 6px; padding: 20px; display: flex; flex-direction: column; gap: 16px">
+<div style="font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #4A5361">Inputs</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div style="font-size: 14px; color: #4A5361">Waveguide</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px">
+<sc-for list="{{presets}}" as="p" hint-placeholder-count="6">
+<sc-if value="{{p.selected}}" hint-placeholder-val="{{false}}">
+<button type="button" onClick="{{p.pick}}" style="height: 44px; border: 1px solid #17202B; background: #17202B; color: #FFFFFF; border-radius: 4px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; cursor: pointer">{{p.id}}</button>
+</sc-if>
+<sc-if value="{{p.unselected}}" hint-placeholder-val="{{true}}">
+<button type="button" onClick="{{p.pick}}" style="height: 44px; border: 1px solid #CFCBBE; background: #FFFFFF; color: #17202B; border-radius: 4px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; cursor: pointer">{{p.id}}</button>
+</sc-if>
+</sc-for>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="in-f" style="font-size: 14px; color: #4A5361">Centre freq. f₀ (GHz)</label>
+<input id="in-f" type="number" step="0.05" value="{{fStr}}" onChange="{{onF}}" style="height: 44px; box-sizing: border-box; padding: 0 10px; border: 1px solid #CFCBBE; border-radius: 4px; font-family: 'IBM Plex Mono', monospace; font-size: 15px; color: #17202B; background: #FFFFFF">
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="in-t" style="font-size: 14px; color: #4A5361">Wall thickness t (mm)</label>
+<input id="in-t" type="number" step="0.1" value="{{tStr}}" onChange="{{onT}}" style="height: 44px; box-sizing: border-box; padding: 0 10px; border: 1px solid #CFCBBE; border-radius: 4px; font-family: 'IBM Plex Mono', monospace; font-size: 15px; color: #17202B; background: #FFFFFF">
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="in-l" style="font-size: 14px; color: #4A5361">Slot arm length L (mm)</label>
+<input id="in-l" type="number" step="0.1" value="{{LStr}}" onChange="{{onL}}" style="height: 44px; box-sizing: border-box; padding: 0 10px; border: 1px solid #CFCBBE; border-radius: 4px; font-family: 'IBM Plex Mono', monospace; font-size: 15px; color: #17202B; background: #FFFFFF">
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="in-w" style="font-size: 14px; color: #4A5361">Slot width w (mm)</label>
+<input id="in-w" type="number" step="0.1" value="{{wStr}}" onChange="{{onW}}" style="height: 44px; box-sizing: border-box; padding: 0 10px; border: 1px solid #CFCBBE; border-radius: 4px; font-family: 'IBM Plex Mono', monospace; font-size: 15px; color: #17202B; background: #FFFFFF">
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="in-s" style="font-size: 14px; color: #4A5361">Slot spacing Δ per axis (mm)</label>
+<div style="display: flex; gap: 8px">
+<input id="in-s" type="number" step="0.05" value="{{spStr}}" onChange="{{onSp}}" style="height: 44px; flex-grow: 1; min-width: 0; box-sizing: border-box; padding: 0 10px; border: 1px solid #CFCBBE; border-radius: 4px; font-family: 'IBM Plex Mono', monospace; font-size: 15px; color: #17202B; background: #FFFFFF">
+<button type="button" onClick="{{useQuarter}}" style="height: 44px; padding: 0 14px; border: 1px solid #A8461A; background: #FFFFFF; color: #A8461A; border-radius: 4px; font-family: 'IBM Plex Sans', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer">Set λg/4</button>
+</div>
+</div>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #CFCBBE; border-radius: 6px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<div style="font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #4A5361">Design checks</div>
+<sc-for list="{{checks}}" as="c" hint-placeholder-count="7">
+<div style="display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 20px">
+<sc-if value="{{c.ok}}" hint-placeholder-val="{{true}}">
+<svg width="20" height="20" viewBox="0 0 20 20" style="flex-shrink: 0; fill: none; stroke: #2A5788; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><circle cx="10" cy="10" r="8"></circle><path d="M6 10.5 L9 13 L14 7.5"></path></svg>
+</sc-if>
+<sc-if value="{{c.bad}}" hint-placeholder-val="{{false}}">
+<svg width="20" height="20" viewBox="0 0 20 20" style="flex-shrink: 0; fill: none; stroke: #A8461A; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M10 2.5 L18 17 L2 17 Z"></path><path d="M10 8 L10 11.5"></path><path d="M10 14.2 L10 14.4"></path></svg>
+</sc-if>
+<span>{{c.text}}</span>
+</div>
+</sc-for>
+</div>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #CFCBBE; border-radius: 6px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; justify-content: space-between; align-items: baseline">
+<div style="font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #4A5361">Shared-wall layout · to scale</div>
+<div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #4A5361">a × a = {{aStr}} mm</div>
+</div>
+<svg width="520" height="520" viewBox="0 0 520 520" style="display: block; font-family: 'IBM Plex Mono', monospace">
+<rect x="40" y="40" width="440" height="440" fill="#EEF2F6" stroke="#17202B" stroke-width="2"></rect>
+<line x1="40" y1="40" x2="480" y2="480" stroke="#4A5361" stroke-width="1" stroke-dasharray="6 6"></line>
+<line x1="40" y1="{{s1cy}}" x2="{{s1cx}}" y2="{{s1cy}}" stroke="#A8461A" stroke-width="1"></line>
+<line x1="{{s1cx}}" y1="40" x2="{{s1cx}}" y2="{{s1cy}}" stroke="#A8461A" stroke-width="1"></line>
+<rect x="{{s1hx}}" y="{{s1hy}}" width="{{slw}}" height="{{ssw}}" fill="#17202B"></rect>
+<rect x="{{s1vx}}" y="{{s1vy}}" width="{{ssw}}" height="{{slw}}" fill="#17202B"></rect>
+<rect x="{{s2hx}}" y="{{s2hy}}" width="{{slw}}" height="{{ssw}}" fill="#17202B"></rect>
+<rect x="{{s2vx}}" y="{{s2vy}}" width="{{ssw}}" height="{{slw}}" fill="#17202B"></rect>
+<line x1="{{s1cx}}" y1="{{s2cy}}" x2="{{s2cx}}" y2="{{s2cy}}" stroke="#2A5788" stroke-width="1" stroke-dasharray="3 3"></line>
+<text x="{{dLabelX}}" y="{{dLabelY}}" font-size="13" fill="#A8461A">d = {{dStr}}</text>
+<text x="{{spLabelX}}" y="{{spLabelY}}" font-size="13" fill="#2A5788">Δ = {{spStr}}</text>
+<text x="260" y="24" font-size="13" fill="#17202B" text-anchor="middle">port 1 input ↓  (guide 1 runs top → bottom)</text>
+<text x="260" y="506" font-size="13" fill="#4A5361" text-anchor="middle">port 2 through ↓</text>
+<text x="20" y="260" font-size="13" fill="#17202B" text-anchor="middle" transform="rotate(-90 20 260)">← port 3 coupled</text>
+<text x="500" y="260" font-size="13" fill="#4A5361" text-anchor="middle" transform="rotate(90 500 260)">port 4 isolated →</text>
+</svg>
+<div style="font-size: 14px; line-height: 21px; color: #4A5361">Guide 2 crosses on top, running left–right. Slot centres sit at (d, d) and (a − d, a − d), measured from guide 1’s left wall and guide 2’s input-side wall. Mirror both slots onto the other diagonal to swap the coupled and isolated ports.</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 24px; min-width: 0">
+<div style="background: #FFFFFF; border: 1px solid #CFCBBE; border-radius: 6px; padding: 20px; display: flex; flex-direction: column; gap: 4px">
+<div style="font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #4A5361; padding-bottom: 8px">Computed geometry</div>
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="11">
+<div style="display: flex; justify-content: space-between; gap: 16px; padding: 7px 0; border-bottom: 1px solid #E6E2D6; font-size: 15px; line-height: 22px">
+<span style="color: #4A5361">{{r.label}}</span>
+<span style="font-family: 'IBM Plex Mono', monospace; font-weight: 500; color: #17202B; white-space: nowrap">{{r.value}}</span>
+</div>
+</sc-for>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #CFCBBE; border-radius: 6px; padding: 20px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; justify-content: space-between; align-items: baseline">
+<div style="font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #4A5361">Coupling ripple across band</div>
+<div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #4A5361">|S31| dB rel. f₀ · up = stronger</div>
+</div>
+<svg width="460" height="210" viewBox="0 0 460 210" style="display: block; max-width: 100%; font-family: 'IBM Plex Mono', monospace">
+<rect x="48" y="16" width="396" height="160" fill="#F5F4EF"></rect>
+<line x1="48" y1="96" x2="444" y2="96" stroke="#CFCBBE" stroke-width="1"></line>
+<line x1="{{f0x}}" y1="16" x2="{{f0x}}" y2="176" stroke="#A8461A" stroke-width="1" stroke-dasharray="4 4"></line>
+<polyline points="{{sweepPts}}" fill="none" stroke="#2A5788" stroke-width="2.5" stroke-linejoin="round"></polyline>
+<text x="42" y="22" font-size="12" fill="#4A5361" text-anchor="end">+{{rangeStr}}</text>
+<text x="42" y="100" font-size="12" fill="#4A5361" text-anchor="end">0</text>
+<text x="42" y="178" font-size="12" fill="#4A5361" text-anchor="end">−{{rangeStr}}</text>
+<text x="48" y="198" font-size="12" fill="#4A5361">{{loStr}} GHz</text>
+<text x="444" y="198" font-size="12" fill="#4A5361" text-anchor="end">{{hiStr}} GHz</text>
+</svg>
+<div style="font-size: 14px; line-height: 21px; color: #4A5361">Closed-form trend: slot-pair array factor, slot polarizability rising towards resonance, and attenuation through the wall. The absolute coupling level comes from the full-wave openEMS simulation in the report.</div>
+</div>
+</div>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1080}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { wg: 'WR-22', f: '40', L: '2', w: '0.35', t: '0.25', sp: '' };
+  }
+  renderVals() {
+    var C = 299.792458;
+    var PRESETS = [
+      { id: 'WR-137', a: 34.849, b: 15.799, lo: 5.85, hi: 8.2 },
+      { id: 'WR-90', a: 22.86, b: 10.16, lo: 8.2, hi: 12.4 },
+      { id: 'WR-62', a: 15.799, b: 7.899, lo: 12.4, hi: 18.0 },
+      { id: 'WR-42', a: 10.668, b: 4.318, lo: 18.0, hi: 26.5 },
+      { id: 'WR-28', a: 7.112, b: 3.556, lo: 26.5, hi: 40.0 },
+      { id: 'WR-22', a: 5.690, b: 2.845, lo: 33.0, hi: 50.0 }
+    ];
+    var self = this;
+    var st = this.state;
+    var num = function (v, d) { var n = parseFloat(v); return isFinite(n) && n > 0 ? n : d; };
+    var fx = function (n, dp) { return isFinite(n) ? n.toFixed(dp) : '—'; };
+    var wg = PRESETS[1];
+    for (var i = 0; i < PRESETS.length; i++) { if (PRESETS[i].id === st.wg) wg = PRESETS[i]; }
+    var a = wg.a, b = wg.b;
+    var f = num(st.f, 10), L = num(st.L, 8), w = num(st.w, 1.5), t = parseFloat(st.t);
+    if (!isFinite(t) || t < 0) t = 0;
+    var fc = C / (2 * a);
+    var lam0 = C / f;
+    var above = f > fc * 1.0001;
+    var lgAt = function (ff) { var r = fc / ff; return r < 1 ? (C / ff) / Math.sqrt(1 - r * r) : NaN; };
+    var lg = lgAt(f);
+    var beta = 2 * Math.PI / lg;
+    var spAuto = lg / 4;
+    var sp = st.sp === '' ? spAuto : num(st.sp, spAuto);
+    var d = (a - sp) / 2;
+    var posF = Math.abs(Math.sin(2 * Math.PI * d / a));
+    var arrAt = function (ff) { var bb = 2 * Math.PI / lgAt(ff); return Math.abs(Math.sin(bb * sp)); };
+    var wallLossAt = function (ff) {
+      var k0 = 2 * Math.PI * ff / C; var kc = Math.PI / L;
+      return kc > k0 ? 8.686 * Math.sqrt(kc * kc - k0 * k0) * t : 0;
+    };
+    // slot polarizability rises towards the half-wave resonance L = lambda0/2
+    var resAt = function (ff) { var x = 2 * L * ff / C; return x < 1 ? 1 / (1 - x * x) : NaN; };
+    // crossed guides: the magnetic coupling itself is frequency independent, so the
+    // band variation is array factor x polarizability growth x wall attenuation
+    var relAt = function (ff) { return 20 * Math.log10(2 * posF * arrAt(ff) * resAt(ff) + 1e-12) - wallLossAt(ff); };
+    var relDb = 20 * Math.log10(2 * posF * arrAt(f) + 1e-12);
+    var Lres = lam0 / 2;
+    var minClear = Math.max(0.1, 0.02 * a);
+    var clear = d - L / 2;
+    // narrowest metal web between the two crosses: shortest distance between any arm of
+    // slot 1 and any arm of slot 2 (same rule as moreno/design.py)
+    var armsAt = function (c) { return [[c - L / 2, c + L / 2, c - w / 2, c + w / 2], [c - w / 2, c + w / 2, c - L / 2, c + L / 2]]; };
+    var gapOf = function (p, q) { var dx = Math.max(q[0] - p[1], p[0] - q[1], 0), dz = Math.max(q[2] - p[3], p[2] - q[3], 0); return Math.sqrt(dx * dx + dz * dz); };
+    var web = Infinity;
+    armsAt(d).forEach(function (p) { armsAt(a - d).forEach(function (q) { web = Math.min(web, gapOf(p, q)); }); });
+    var spDeg = beta * sp * 180 / Math.PI;
+
+    var s = 440 / a;
+    var c1 = 40 + d * s, c2 = 40 + (a - d) * s;
+    var slw = L * s, ssw = w * s;
+
+    var lo = wg.lo, hi = wg.hi, n = 25, pts = [], vals = [], ref = relAt(f), maxAbs = 0;
+    for (var k = 0; k < n; k++) {
+      var ff = lo + (hi - lo) * k / (n - 1);
+      var v = relAt(ff) - ref;
+      vals.push(v);
+      if (isFinite(v) && Math.abs(v) > maxAbs) maxAbs = Math.abs(v);
+    }
+    var range = Math.max(1, Math.ceil(maxAbs));
+    for (var k2 = 0; k2 < n; k2++) {
+      var xx = 48 + 396 * k2 / (n - 1);
+      var vv = isFinite(vals[k2]) ? vals[k2] : 0;
+      var yy = 96 - (vv / range) * 80;
+      pts.push(xx.toFixed(1) + ',' + yy.toFixed(1));
+    }
+    var f0x = 48 + 396 * Math.min(1, Math.max(0, (f - lo) / (hi - lo)));
+
+    var inBand = f >= 1.25 * fc && f <= 0.95 * 2 * fc;
+    var checks = [
+      { ok: above, text: above ? 'f₀ is above the TE10 cut-off (' + fx(fc, 2) + ' GHz).' : 'f₀ is below TE10 cut-off — no propagation.' },
+      { ok: inBand, text: inBand ? 'f₀ sits in the single-mode range 1.25 fc – 0.95·2 fc.' : 'f₀ is outside 1.25 fc – 0.95·2 fc; expect dispersion or TE20.' },
+      { ok: clear >= minClear, text: clear >= minClear ? 'Slot arms clear the side walls by ' + fx(clear, 2) + ' mm.' : (clear < 0 ? 'Slot arms run ' + fx(-clear, 2) + ' mm past the side walls' : 'Slot arms come within ' + fx(clear, 2) + ' mm of a wall') + ' (want ≥ ' + fx(minClear, 2) + ' mm clear) — shorten L or reduce Δ.' },
+      { ok: L <= 0.9 * Lres, text: L <= 0.9 * Lres ? 'L is ' + fx(100 * L / Lres, 0) + '% of resonant length; coupling stays smooth.' : 'L is near or past slot resonance (λ₀/2 = ' + fx(Lres, 2) + ' mm).' },
+      { ok: spDeg >= 70 && spDeg <= 110, text: 'Electrical spacing βΔ = ' + fx(spDeg, 1) + '° (aim for 90°).' },
+      { ok: web >= minClear, text: web >= minClear ? 'The two crosses are ' + fx(web, 2) + ' mm apart at their nearest points.' : 'The two crosses come within ' + fx(web, 2) + ' mm of each other (want ≥ ' + fx(minClear, 2) + ') — shorten L or increase Δ.' },
+      { ok: w <= L / 4, text: w <= L / 4 ? 'Arm aspect ratio L/w = ' + fx(L / w, 1) + ' keeps each arm a narrow slot.' : 'Arm aspect ratio L/w = ' + fx(L / w, 1) + ' is below 4; the narrow-slot model no longer applies.' }
+    ].map(function (c) { return { ok: c.ok, bad: !c.ok, text: c.text }; });
+
+    var rows = [
+      { label: 'Free-space wavelength λ₀', value: fx(lam0, 3) + ' mm' },
+      { label: 'Guide wavelength λg', value: fx(lg, 3) + ' mm' },
+      { label: 'TE10 / TE20 cut-off', value: fx(fc, 3) + ' / ' + fx(2 * fc, 3) + ' GHz' },
+      { label: 'Slot offset d from both walls', value: fx(d, 3) + ' mm' },
+      { label: 'Slot 1 centre (x, z)', value: '(' + fx(d, 2) + ', ' + fx(d, 2) + ') mm' },
+      { label: 'Slot 2 centre (x, z)', value: '(' + fx(a - d, 2) + ', ' + fx(a - d, 2) + ') mm' },
+      { label: 'Spacing Δ per axis / along diagonal', value: fx(sp, 3) + ' / ' + fx(sp * Math.SQRT2, 3) + ' mm' },
+      { label: 'Pair vs one slot at a/4 (thin wall)', value: (relDb >= 0 ? '+' : '') + fx(relDb, 2) + ' dB' },
+      { label: 'Thick-wall slot attenuation at f₀', value: fx(wallLossAt(f), 2) + ' dB' },
+      { label: 'Slot resonant length λ₀/2', value: fx(Lres, 2) + ' mm' },
+      { label: 'Narrowest web between crosses', value: fx(web, 3) + ' mm' }
+    ];
+
+    var presets = PRESETS.map(function (p) {
+      var sel = p.id === wg.id;
+      return { id: p.id, selected: sel, unselected: !sel, pick: function () {
+        var k = p.a / 22.86, r2 = function (x) { return String(Math.round(x * 100) / 100); };
+        self.setState({ wg: p.id, f: r2((p.lo + p.hi) / 2), L: r2(8 * k), w: r2(1.5 * k), t: r2(Math.max(0.1, 1 * k)), sp: '' });
+      } };
+    });
+
+    return {
+      presets: presets,
+      wgName: wg.id, aStr: fx(a, 3), bStr: fx(b, 3), bandStr: fx(lo, 2) + '–' + fx(hi, 2),
+      fStr: st.f, tStr: st.t, LStr: st.L, wStr: st.w,
+      spStr: st.sp === '' ? fx(spAuto, 2) : st.sp,
+      dStr: fx(d, 2),
+      onF: function (e) { self.setState({ f: e.target.value }); },
+      onT: function (e) { self.setState({ t: e.target.value }); },
+      onL: function (e) { self.setState({ L: e.target.value }); },
+      onW: function (e) { self.setState({ w: e.target.value }); },
+      onSp: function (e) { self.setState({ sp: e.target.value }); },
+      useQuarter: function () { self.setState({ sp: '' }); },
+      checks: checks, rows: rows,
+      s1cx: c1, s1cy: c1, s2cx: c2, s2cy: c2,
+      slw: slw, ssw: ssw,
+      s1hx: c1 - slw / 2, s1hy: c1 - ssw / 2, s1vx: c1 - ssw / 2, s1vy: c1 - slw / 2,
+      s2hx: c2 - slw / 2, s2hy: c2 - ssw / 2, s2vx: c2 - ssw / 2, s2vy: c2 - slw / 2,
+      dLabelX: 46, dLabelY: c1 - ssw / 2 - 10,
+      spLabelX: Math.max(46, c2 - slw / 2 - 100), spLabelY: c2 + ssw / 2 + 20,
+      sweepPts: pts.join(' '), f0x: f0x, rangeStr: String(range),
+      loStr: fx(lo, 2), hiStr: fx(hi, 2)
+    };
+  }
+}
+</script>
+</body>
+</html>
